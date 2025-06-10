@@ -1,0 +1,7 @@
+{
+  "name": "Delta Aquarismo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
