@@ -3,7 +3,7 @@
     <ion-header>
       <ion-toolbar>
         <ion-title>
-          <ion-img src="/logo.png" alt="Delta Aquarismo" class="header-logo" />
+          <ion-img src="/logo-white.png" alt="Delta Aquarismo" class="header-logo" />
         </ion-title>
       </ion-toolbar>
     </ion-header>

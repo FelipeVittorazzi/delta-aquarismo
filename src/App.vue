@@ -1,11 +1,11 @@
 <template>
   <ion-app>
-    <router-view />
+    <ion-router-outlet></ion-router-outlet>
   </ion-app>
 </template>
 
 <script setup lang="ts">
-import { IonApp } from '@ionic/vue';
+import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import { onMounted } from 'vue';
 
 onMounted(() => {
