@@ -1,39 +1,73 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import TabsPage from '../views/TabsPage.vue'
+import TabBar from '@/components/TabBar.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/tabs/tab1'
+    redirect: '/home'
   },
   {
-    path: '/tabs/',
-    component: TabsPage,
+    path: '/',
+    component: TabBar,
     children: [
       {
-        path: '',
-        redirect: '/tabs/tab1'
+        path: 'home',
+        name: 'Home',
+        component: () => import('@/views/HomePage.vue')
       },
       {
-        path: 'tab1',
-        component: () => import('@/views/Tab1Page.vue')
+        path: 'promocoes',
+        name: 'Promocoes',
+        component: () => import('@/views/PromocoesPage.vue')
       },
       {
-        path: 'tab2',
-        component: () => import('@/views/Tab2Page.vue')
+        path: 'fichas',
+        name: 'Fichas',
+        component: () => import('@/views/FichasPage.vue')
       },
       {
-        path: 'tab3',
-        component: () => import('@/views/Tab3Page.vue')
+        path: 'ficha/:id',
+        name: 'FichaDetalhe',
+        component: () => import('@/views/FichaDetalhe.vue')
+      },
+      {
+        path: 'calculadoras',
+        name: 'Calculadoras',
+        component: () => import('@/views/CalculadorasPage.vue')
+      },
+      {
+        path: 'conta',
+        name: 'Conta',
+        component: () => import('@/views/ContaPage.vue')
+      },
+      {
+        path: 'historico/:type',
+        name: 'Historico',
+        component: () => import('@/views/HistoricoPage.vue')
+      },
+      {
+        path: 'favoritos',
+        name: 'Favoritos',
+        component: () => import('@/views/FavoritosPage.vue')
+      },
+      {
+        path: 'comentarios',
+        name: 'Comentarios',
+        component: () => import('@/views/ComentariosPage.vue')
+      },
+      {
+        path: 'editar-perfil',
+        name: 'EditarPerfil',
+        component: () => import('@/views/EditarPerfilPage.vue')
       }
     ]
   }
-]
+];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('/'),
   routes
-})
+});
 
-export default router
+export default router;

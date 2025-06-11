@@ -13,20 +13,54 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 $RECYCLE.BIN/
 
+# Logs
+logs
 *.log
-log.txt
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-/.idea
-/.ionic
-/.sass-cache
-/.sourcemaps
-/.versions
-/.vscode/*
-!/.vscode/extensions.json
-/coverage
-/dist
-/node_modules
-/platforms
-/plugins
-/www
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+cypress/videos/
+cypress/screenshots/
+
+# Production
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# Capacitor
+ios/
+android/
+resources/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Ionic
+www/
+platforms/
+plugins/
+$RECYCLE.BIN/
