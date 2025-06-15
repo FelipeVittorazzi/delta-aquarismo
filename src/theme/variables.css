@@ -3,3 +3,7 @@ http://ionicframework.com/docs/theming/ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.primary-color {
+    color: #0b314b;
+}

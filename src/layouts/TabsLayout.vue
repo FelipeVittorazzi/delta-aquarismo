@@ -1,6 +1,5 @@
 <template>
-  <ion-page>
-    <ion-tabs>
+    <ion-tabs class="pb-3">
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="home" href="/home">
@@ -29,7 +28,6 @@
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
-  </ion-page>
 </template>
 
 <script setup lang="ts">
@@ -38,10 +36,6 @@ import { home, pricetag, document, calculator, person } from 'ionicons/icons';
 </script>
 
 <style scoped>
-ion-tab-bar {
-  --background: var(--ion-color-light);
-}
-
 ion-tab-button {
   --color: var(--ion-color-medium);
   --color-selected: var(--ion-color-primary);

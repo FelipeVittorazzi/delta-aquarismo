@@ -16,7 +16,7 @@ onMounted(() => {
 
 <style>
 :root {
-  --ion-color-primary: #006d77;
+  --ion-color-primary: #0b314b;
   --ion-color-primary-rgb: 0, 109, 119;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;

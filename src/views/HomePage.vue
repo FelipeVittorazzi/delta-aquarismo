@@ -1,106 +1,52 @@
 <script setup lang="ts">
-import { heart, chatbubble } from 'ionicons/icons';
+import { ref } from 'vue'
+import TitleDelta from '@/components/TitleDelta.vue'
+import PostCard from '@/components/PostCard.vue'
 
-const cashbackValue = ref('25,60');
-
+const cashbackValue = ref('25,60')
 const posts = ref([
   {
     id: 1,
     titulo: 'Novo aquário em exposição na loja!',
     descricao: 'Venha fazer uma visita e conferir de perto 😊',
-    imagem: '/assets/nemo.jpg',
+    imagem: 'https://placehold.co/600x400',
+    autor: 'Delta Aquarismo',
+    data: 'Ontem'
   },
-  // Adicione mais posts conforme necessário
-]);
+  // …
+])
 </script>
 
 <template>
   <ion-page>
-    <ion-content>
-      <div class="flex items-center justify-center px-10 py-2">
-        <img src="/logo.png" alt="Delta Aquarismo" class="brightness-[10.5] w-[6rem]">
-        <div class="flex flex-col">
-          <h1 class="text-white text-2xl font-bold">DELTA</h1>
-          <h1 class="text-white text-2xl font-bold">AQUARISMO</h1>
-        </div>
-      </div>
-      <!-- Teste do Tailwind CSS -->
-     
-      <div class="bg-blue-500 text-white p-4 m-4 rounded-lg shadow-lg">
-        <h2 class="text-xl font-bold mb-2">Teste do Tailwind CSS</h2>
-        <p class="text-sm">Se você está vendo este card com fundo azul, texto branco e sombra, o Tailwind está funcionando!</p>
-      </div>
+    <ion-content class="ion-padding">
+      <TitleDelta />
 
-      <ion-card class="cashback-card">
-        <ion-card-content>
-          <h2>Seu Cashback atual:</h2>
-          <div class="cashback-value">R$ {{ cashbackValue }}</div>
+      <!-- cartão de cashback -->
+      <ion-card class="mb-6">
+        <ion-card-content class="text-start p-7">
+          <h2 class="!font-semibold text-primary !text-2xl">Seu Cashback atual:</h2>
+          <div class="text-5xl font-bold text-primary mt-2">R$ {{ cashbackValue }}</div>
         </ion-card-content>
       </ion-card>
 
-      <ion-list>
-        <ion-item-group>
-          <ion-item-divider>
-            <ion-label>Novidades</ion-label>
-          </ion-item-divider>
-          
-          <ion-item v-for="post in posts" :key="post.id" lines="full">
-            <ion-thumbnail slot="start">
-              <ion-img :src="post.imagem" :alt="post.titulo" />
-            </ion-thumbnail>
-            <ion-label>
-              <h3>{{ post.titulo }}</h3>
-              <p>{{ post.descricao }}</p>
-              <div class="post-actions">
-                <ion-button fill="clear" size="small">
-                  <ion-icon :icon="heart" slot="start" />
-                  Curtir
-                </ion-button>
-                <ion-button fill="clear" size="small">
-                  <ion-icon :icon="chatbubble" slot="start" />
-                  Comentar
-                </ion-button>
-              </div>
-            </ion-label>
-          </ion-item>
-        </ion-item-group>
-      </ion-list>
+      <!-- feed de posts -->
+      <div class="space-y-4">
+        <PostCard
+          v-for="post in posts"
+          :key="post.id"
+          :post="post"
+        />
+      </div>
     </ion-content>
   </ion-page>
 </template>
 
-
 <style scoped>
-.header-logo {
-  height: 40px;
-  width: auto;
+.text-gray {
+  color: var(--ion-color-medium);
 }
-
-.cashback-card {
-  margin: 16px;
-  text-align: center;
+.text-gray-700 {
+  color: #4a4a4a;
 }
-
-.cashback-value {
-  font-size: 2em;
-  font-weight: bold;
-  color: var(--ion-color-primary);
-  margin-top: 8px;
-}
-
-.post-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-ion-thumbnail {
-  --size: 80px;
-  margin-right: 16px;
-}
-
-h3 {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-</style> 
+</style>
