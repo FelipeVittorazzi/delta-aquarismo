@@ -73,7 +73,8 @@ onMounted(() => {
 }
 
 ion-content {
-  --background: #f4f5f8;
+  --background: url('/public/background.png') no-repeat center center;
+  --background-size: cover;
 }
 
 ion-toolbar {

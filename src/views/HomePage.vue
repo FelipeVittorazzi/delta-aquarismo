@@ -1,15 +1,31 @@
+<script setup lang="ts">
+import { heart, chatbubble } from 'ionicons/icons';
+
+const cashbackValue = ref('25,60');
+
+const posts = ref([
+  {
+    id: 1,
+    titulo: 'Novo aquário em exposição na loja!',
+    descricao: 'Venha fazer uma visita e conferir de perto 😊',
+    imagem: '/assets/nemo.jpg',
+  },
+  // Adicione mais posts conforme necessário
+]);
+</script>
+
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>
-          <ion-img src="/logo-white.png" alt="Delta Aquarismo" class="header-logo" />
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
-
     <ion-content>
+      <div class="flex items-center justify-center px-10 py-2">
+        <img src="/logo.png" alt="Delta Aquarismo" class="brightness-[10.5] w-[6rem]">
+        <div class="flex flex-col">
+          <h1 class="text-white text-2xl font-bold">DELTA</h1>
+          <h1 class="text-white text-2xl font-bold">AQUARISMO</h1>
+        </div>
+      </div>
       <!-- Teste do Tailwind CSS -->
+     
       <div class="bg-blue-500 text-white p-4 m-4 rounded-lg shadow-lg">
         <h2 class="text-xl font-bold mb-2">Teste do Tailwind CSS</h2>
         <p class="text-sm">Se você está vendo este card com fundo azul, texto branco e sombra, o Tailwind está funcionando!</p>
@@ -53,26 +69,6 @@
   </ion-page>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
-         IonCard, IonCardContent, IonList, IonItem, IonItemDivider,
-         IonItemGroup, IonLabel, IonThumbnail, IonImg, IonButton,
-         IonIcon } from '@ionic/vue';
-import { heart, chatbubble } from 'ionicons/icons';
-
-const cashbackValue = ref('25,60');
-
-const posts = ref([
-  {
-    id: 1,
-    titulo: 'Novo aquário em exposição na loja!',
-    descricao: 'Venha fazer uma visita e conferir de perto 😊',
-    imagem: '/assets/nemo.jpg',
-  },
-  // Adicione mais posts conforme necessário
-]);
-</script>
 
 <style scoped>
 .header-logo {
