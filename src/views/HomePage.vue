@@ -9,6 +9,12 @@
     </ion-header>
 
     <ion-content>
+      <!-- Teste do Tailwind CSS -->
+      <div class="bg-blue-500 text-white p-4 m-4 rounded-lg shadow-lg">
+        <h2 class="text-xl font-bold mb-2">Teste do Tailwind CSS</h2>
+        <p class="text-sm">Se você está vendo este card com fundo azul, texto branco e sombra, o Tailwind está funcionando!</p>
+      </div>
+
       <ion-card class="cashback-card">
         <ion-card-content>
           <h2>Seu Cashback atual:</h2>
