@@ -1,13 +1,5 @@
 <template>
   <ion-app>
-    <!-- Header translúcido que se estende por trás da StatusBar -->
-    <ion-header translucent>
-      <ion-toolbar class="toolbar-bg">
-        <ion-title>
-          <img src="/logo.png" alt="Delta Aquarismo" class="header-logo" />
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
 
     <!-- Conteúdo em fullscreen remove o padding da status bar -->
     <ion-content fullscreen class="content-bg">
@@ -84,14 +76,8 @@ onMounted(() => {
   --ion-border-color: #d7d8da;
 }
 
-/* Estilos para o header translúcido */
-.toolbar-bg {
-  --background: transparent;
-  --color: var(--ion-color-primary-contrast);
-}
-
-/* Conteúdo com background de imagem */
-.content-bg {
+/* Restaurar o fundo global */
+ion-content {
   --background: url('/background.png') no-repeat center center;
   --background-size: cover;
   --padding-bottom: 3rem;
