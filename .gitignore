@@ -50,8 +50,6 @@ dist-ssr
 Thumbs.db
 
 # Capacitor
-ios/
-android/
 resources/
 
 # Environment files
