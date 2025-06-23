@@ -1,11 +1,11 @@
 <template>
-  <ion-item>
+  <ion-item >
     <ion-thumbnail slot="start">
       <ion-img :src="imagem" :alt="nome" />
     </ion-thumbnail>
     <ion-label>
-      <h2>{{ nome }}</h2>
-      <div class="cashback-badge">
+      <h2 class="text-lg font-semibold text-white">{{ nome }}</h2>
+      <div class="bg-[#009388] text-white text-lg font-semibold rounded text-center inline-block px-2 py-1">
         {{ cashback }}% de cashback
       </div>
     </ion-label>
@@ -26,23 +26,14 @@ defineProps<Props>();
 
 <style scoped>
 ion-thumbnail {
-  --size: 80px;
+  --size: 100px;
   margin: 10px;
+  --border-radius: 10px;
 }
 
-.cashback-badge {
-  display: inline-block;
-  background-color: var(--ion-color-success);
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.9em;
-  margin-top: 5px;
-}
-
-h2 {
-  font-size: 1.1em;
-  font-weight: 500;
-  margin-bottom: 8px;
+ion-item {
+  --background: transparent;
+  --border-width: 0;
+  --border-color: transparent;
 }
 </style> 
