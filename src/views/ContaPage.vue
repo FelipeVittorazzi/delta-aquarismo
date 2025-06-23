@@ -1,10 +1,50 @@
+<script setup lang="ts">
+import { IonPage, IonContent,
+         IonCard, IonCardContent, IonList, IonItem, IonIcon,
+         IonLabel, IonText, IonImg } from '@ionic/vue';
+import { wallet, cart, star, chatbubble, person, logOut } from 'ionicons/icons';
+import { useRouter } from 'vue-router';
+import HeaderPadrao from '@/components/HeaderPadrao.vue';
+
+const router = useRouter();
+
+const userName = ref('João da Silva');
+const cashbackValue = ref('52,00');
+
+const userInitials = computed(() => {
+  return userName.value
+    .split(' ')
+    .map(n => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+});
+
+const goToHistory = (type: 'cashback' | 'purchases') => {
+  router.push(`/historico/${type}`);
+};
+
+const goToFavorites = () => {
+  router.push('/favoritos');
+};
+
+const goToComments = () => {
+  router.push('/comentarios');
+};
+
+const editProfile = () => {
+  router.push('/editar-perfil');
+};
+
+const logout = () => {
+  // Implementar lógica de logout
+  router.push('/login');
+};
+</script>
+
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Conta</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <HeaderPadrao title="CONTA" />
 
     <ion-content>
       <div class="profile-header">
@@ -62,49 +102,6 @@
   </ion-page>
 </template>
 
-<script setup lang="ts">
-import { ref, computed } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
-         IonCard, IonCardContent, IonList, IonItem, IonIcon,
-         IonLabel, IonText, IonImg } from '@ionic/vue';
-import { wallet, cart, star, chatbubble, person, logOut } from 'ionicons/icons';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
-const userName = ref('João da Silva');
-const cashbackValue = ref('52,00');
-
-const userInitials = computed(() => {
-  return userName.value
-    .split(' ')
-    .map(n => n[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2);
-});
-
-const goToHistory = (type: 'cashback' | 'purchases') => {
-  router.push(`/historico/${type}`);
-};
-
-const goToFavorites = () => {
-  router.push('/favoritos');
-};
-
-const goToComments = () => {
-  router.push('/comentarios');
-};
-
-const editProfile = () => {
-  router.push('/editar-perfil');
-};
-
-const logout = () => {
-  // Implementar lógica de logout
-  router.push('/login');
-};
-</script>
 
 <style scoped>
 .profile-header {

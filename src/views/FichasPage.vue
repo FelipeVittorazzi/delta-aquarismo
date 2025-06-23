@@ -1,21 +1,49 @@
+<script setup lang="ts">
+import { IonPage, IonContent,
+         IonSegment, IonSegmentButton, IonLabel, IonList, IonItem,
+         IonThumbnail, IonImg } from '@ionic/vue';
+
+const selectedCategory = ref('peixes');
+
+const peixes = ref([
+  {
+    id: 'betta',
+    nome: 'Betta Splendens',
+    imagem: 'https://placehold.co/600x400'
+  },
+  {
+    id: 'neon',
+    nome: 'Neon Tetra',
+    imagem: 'https://placehold.co/600x400'
+  },
+  {
+    id: 'barb',
+    nome: 'Green Tiger Barb',
+    imagem: 'https://placehold.co/600x400'
+  },
+  {
+    id: 'shrimp',
+    nome: 'Red Cherry Shrimp',
+    imagem: 'https://placehold.co/600x400'
+  }
+]);
+</script>
+
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Fichas</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
     <ion-content>
+      <div class="flex flex-col gap-3 items-center justify-center text-white pt-20 pb-10">
+        <h1 class="text-3xl font-bold">FICHAS</h1>
+      </div>
       <ion-segment v-model="selectedCategory">
         <ion-segment-button value="peixes">
-          <ion-label>Peixes</ion-label>
+          <ion-label class="text-base font-semibold">Peixes</ion-label>
         </ion-segment-button>
         <ion-segment-button value="plantas">
-          <ion-label>Plantas</ion-label>
+          <ion-label class="text-base font-semibold">Plantas</ion-label>
         </ion-segment-button>
         <ion-segment-button value="invertebrados">
-          <ion-label>Invertebrados</ion-label>
+          <ion-label class="text-base font-semibold">Invertebrados</ion-label>
         </ion-segment-button>
       </ion-segment>
 
@@ -39,41 +67,13 @@
   </ion-page>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
-         IonSegment, IonSegmentButton, IonLabel, IonList, IonItem,
-         IonThumbnail, IonImg } from '@ionic/vue';
-
-const selectedCategory = ref('peixes');
-
-const peixes = ref([
-  {
-    id: 'betta',
-    nome: 'Betta Splendens',
-    imagem: '/assets/betta.jpg'
-  },
-  {
-    id: 'neon',
-    nome: 'Neon Tetra',
-    imagem: '/assets/neon.jpg'
-  },
-  {
-    id: 'barb',
-    nome: 'Green Tiger Barb',
-    imagem: '/assets/barb.jpg'
-  },
-  {
-    id: 'shrimp',
-    nome: 'Red Cherry Shrimp',
-    imagem: '/assets/shrimp.jpg'
-  }
-]);
-</script>
-
 <style scoped>
 ion-segment {
-  padding: 16px;
+  --background: #E9F4F8;
+}
+
+ion-segment-button {
+  text-transform: capitalize;
 }
 
 ion-thumbnail {

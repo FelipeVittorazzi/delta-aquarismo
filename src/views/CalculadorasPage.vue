@@ -1,10 +1,16 @@
+<script setup lang="ts">
+import { IonPage, IonContent,
+         IonSegment, IonSegmentButton, IonLabel, IonCard,
+         IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
+import CalculadoraLitragem from '@/components/CalculadoraLitragem.vue';
+import HeaderPadrao from '@/components/HeaderPadrao.vue';
+
+const selectedCalculator = ref('litragem');
+</script>
+
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Calculadoras</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <HeaderPadrao title="CALCULADORAS" />
 
     <ion-content>
       <ion-segment v-model="selectedCalculator">
@@ -30,16 +36,6 @@
     </ion-content>
   </ion-page>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
-         IonSegment, IonSegmentButton, IonLabel, IonCard,
-         IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
-import CalculadoraLitragem from '@/components/CalculadoraLitragem.vue';
-
-const selectedCalculator = ref('litragem');
-</script>
 
 <style scoped>
 ion-segment {
