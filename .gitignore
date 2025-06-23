@@ -62,5 +62,5 @@ resources/
 # Ionic
 www/
 platforms/
-plugins/
+/plugins/
 $RECYCLE.BIN/
