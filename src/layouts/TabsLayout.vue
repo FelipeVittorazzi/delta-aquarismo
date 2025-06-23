@@ -1,7 +1,7 @@
 <template>
     <ion-tabs class="pb-3">
       <ion-router-outlet></ion-router-outlet>
-      <ion-tab-bar slot="bottom">
+      <ion-tab-bar slot="bottom" class="pt-2">
         <ion-tab-button tab="home" href="/home">
           <ion-icon :icon="home" />
           <ion-label>Início</ion-label>

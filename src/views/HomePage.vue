@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import TitleDelta from '@/components/TitleDelta.vue'
 import PostCard from '@/components/PostCard.vue'
 
@@ -13,7 +12,14 @@ const posts = ref([
     autor: 'Delta Aquarismo',
     data: 'Ontem'
   },
-  // …
+  {
+    id: 2,
+    titulo: 'Novo aquário em exposição na loja!',
+    descricao: 'Venha fazer uma visita e conferir de perto 😊',
+    imagem: 'https://placehold.co/600x400',
+    autor: 'Delta Aquarismo',
+    data: 'Ontem'
+  },
 ])
 </script>
 
@@ -22,7 +28,6 @@ const posts = ref([
     <ion-content class="ion-padding">
       <TitleDelta />
 
-      <!-- cartão de cashback -->
       <ion-card class="mb-6">
         <ion-card-content class="text-start p-7">
           <h2 class="!font-semibold text-primary !text-2xl">Seu Cashback atual:</h2>
@@ -30,7 +35,6 @@ const posts = ref([
         </ion-card-content>
       </ion-card>
 
-      <!-- feed de posts -->
       <div class="space-y-4">
         <PostCard
           v-for="post in posts"

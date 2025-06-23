@@ -16,8 +16,7 @@ defineProps<{
 </script>
 
 <template>
-  <ion-card class="rounded-xl overflow-hidden">
-    <!-- cabeçalho do card -->
+  <ion-card class="rounded-xl overflow-hidden px-2">
     <ion-card-header class="px-4 pt-4">
      <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -26,42 +25,29 @@ defineProps<{
         </ion-avatar>
         <ion-card-subtitle class="font-semibold normal-case text-lg text-primary">{{ post.autor }}</ion-card-subtitle>
       </div>
-      <ion-card-subtitle class="text-sm text-gray normal-case">{{ post.data }}</ion-card-subtitle>
+      <ion-card-subtitle class="text-sm text-gray normal-case font-[500]">{{ post.data }}</ion-card-subtitle>
      </div>
     </ion-card-header>
 
-    <!-- imagem -->
-    <ion-img
+    <ion-card-content class="px-4 py-2">
+      <h3 class="!text-lg text-primary !mb-0">{{ post.titulo }}</h3>
+      <p class="!text-lg text-primary">{{ post.descricao }}</p>
+    <img
       :src="post.imagem"
       :alt="post.titulo"
-      class="w-full h-40 object-cover"
+      class="w-full h-[13rem] object-cover rounded-xl"
     />
+  </ion-card-content>
 
-    <!-- conteúdo -->
-    <ion-card-content class="px-4 py-2">
-      <h3 class="text-lg font-semibold mb-2">{{ post.titulo }}</h3>
-      <p class="text-sm text-gray-700">{{ post.descricao }}</p>
-    </ion-card-content>
-
-    <!-- rodapé com ações -->
     <ion-card-footer class="flex gap-4 px-4 pb-4">
-      <ion-button fill="clear" size="small">
-        <ion-icon :icon="heart" slot="start" />
-        Curtir
-      </ion-button>
-      <ion-button fill="clear" size="small">
-        <ion-icon :icon="chatbubble" slot="start" />
-        Comentar
-      </ion-button>
+        <ion-icon :icon="heart" slot="start" class="text-primary"/>
+        <ion-icon :icon="chatbubble" slot="start" class="text-primary"/>
     </ion-card-footer>
   </ion-card>
 </template>
 
 <style scoped>
-.text-gray {
-  color: var(--ion-color-medium);
+ion-icon {
+  font-size: 1.5rem;
 }
-.text-gray-700 {
-  color: #4a4a4a;
-}
-</style> 
+</style>

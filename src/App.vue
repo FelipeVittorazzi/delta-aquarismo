@@ -75,6 +75,7 @@ onMounted(() => {
 ion-content {
   --background: url('/public/background.png') no-repeat center center;
   --background-size: cover;
+  --padding-bottom: 3rem;
 }
 
 ion-toolbar {
