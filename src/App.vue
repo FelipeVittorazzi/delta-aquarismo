@@ -1,11 +1,23 @@
 <template>
   <ion-app>
-    <ion-router-outlet></ion-router-outlet>
+    <!-- Header translúcido que se estende por trás da StatusBar -->
+    <ion-header translucent>
+      <ion-toolbar class="toolbar-bg">
+        <ion-title>
+          <img src="/logo.png" alt="Delta Aquarismo" class="header-logo" />
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Conteúdo em fullscreen remove o padding da status bar -->
+    <ion-content fullscreen class="content-bg">
+      <ion-router-outlet></ion-router-outlet>
+    </ion-content>
   </ion-app>
 </template>
 
 <script setup lang="ts">
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
+import { IonApp, IonRouterOutlet, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 import { onMounted } from 'vue';
 
 onMounted(() => {
@@ -72,12 +84,25 @@ onMounted(() => {
   --ion-border-color: #d7d8da;
 }
 
-ion-content {
-  --background: url('/public/background.png') no-repeat center center;
+/* Estilos para o header translúcido */
+.toolbar-bg {
+  --background: transparent;
+  --color: var(--ion-color-primary-contrast);
+}
+
+/* Conteúdo com background de imagem */
+.content-bg {
+  --background: url('/background.png') no-repeat center center;
   --background-size: cover;
   --padding-bottom: 3rem;
 }
 
+/* Configuração da NavigationBar para Android */
+.android-navigation-bar {
+  --navigation-bar-color: #0b314b;
+}
+
+/* Estilos para ion-toolbar */
 ion-toolbar {
   --background: var(--ion-color-primary);
   --color: var(--ion-color-primary-contrast);

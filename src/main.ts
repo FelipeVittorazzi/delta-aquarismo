@@ -28,6 +28,10 @@ import '@ionic/vue/css/typography.css';
 /* Theme variables */
 import './theme/variables.css';
 
+// Importar plugins do Capacitor
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { Capacitor } from '@capacitor/core';
+
 const app = createApp(App)
   .use(IonicPlugin)
   .use(VueAutoImportsPlugin)
@@ -35,4 +39,23 @@ const app = createApp(App)
 
 router.isReady().then(() => {
   app.mount('#app');
+});
+
+// Configurar StatusBar e NavigationBar quando a plataforma estiver pronta
+document.addEventListener('deviceready', async () => {
+  if (Capacitor.isNativePlatform()) {
+    try {
+      // Configurar StatusBar com a cor do tema primário
+      await StatusBar.setStyle({ style: Style.Dark });
+      await StatusBar.setBackgroundColor({ color: '#0b314b' });
+      
+      // Para Android, configurar NavigationBar via CSS customizado
+      if (Capacitor.getPlatform() === 'android') {
+        // Adicionar classe CSS para configurar a NavigationBar
+        document.body.classList.add('android-navigation-bar');
+      }
+    } catch (error) {
+      console.log('Erro ao configurar StatusBar:', error);
+    }
+  }
 });
