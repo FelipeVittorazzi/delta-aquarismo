@@ -8,8 +8,11 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
+    "test:unit:run": "vitest --run",
     "test:e2e": "cypress run",
     "test:e2e:dev": "cypress open",
+    "test:all": "npm run test:unit:run && npm run test:e2e",
+    "test:build": "npm run build && npm run test:all",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
