@@ -23,6 +23,13 @@ export default defineConfig({
   server: {
     port: 8100,
     strictPort: true,
+    proxy: {
+      '/oauth': {
+        target: 'https://deltaaquarismo.com.br',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
   },
   build: {
     outDir: 'dist',
