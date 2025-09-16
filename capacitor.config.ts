@@ -5,7 +5,8 @@ const config: CapacitorConfig = {
   appName: 'Delta Aquarismo',
   webDir: 'dist',
   server: {
-    androidScheme: 'https'
+    androidScheme: 'https',
+    allowNavigation: ['deltaaquarismo.com.br']
   },
   plugins: {
     SplashScreen: {
@@ -20,6 +21,9 @@ const config: CapacitorConfig = {
     StatusBar: {
       backgroundColor: '#0b314b',
       style: 'DARK'
+    },
+    CapacitorHttp: {
+      enabled: true
     }
   }
 };

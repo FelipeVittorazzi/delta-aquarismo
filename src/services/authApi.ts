@@ -1,4 +1,5 @@
 import { authConfig } from '@/config/auth';
+import { capacitorFetch } from './httpCapacitor';
 
 type OAuthTokenResponse = {
   access_token: string;
@@ -15,7 +16,7 @@ export async function loginWithPassword(username: string, password: string) {
   form.set('username', username);
   form.set('password', password);
 
-  const response = await fetch(authConfig.tokenEndpoint, {
+  const response = await capacitorFetch(authConfig.tokenEndpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',

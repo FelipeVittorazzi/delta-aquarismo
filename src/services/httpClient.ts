@@ -1,5 +1,6 @@
 import { authConfig } from '@/config/auth';
 import { useAuth } from '@/composables/useAuth';
+import { capacitorFetch } from './httpCapacitor';
 
 export interface ApiResponse<T = any> {
   data: T;
@@ -17,7 +18,7 @@ class HttpClient {
   private baseURL: string;
 
   constructor() {
-    this.baseURL = import.meta.env.DEV ? 'http://localhost:8100' : authConfig.apiBaseUrl;
+    this.baseURL = authConfig.apiBaseUrl;
   }
 
   private async request<T>(
@@ -37,7 +38,7 @@ class HttpClient {
     };
 
     try {
-      const response = await fetch(url, config);
+      const response = await capacitorFetch(url, config);
       
       if (!response.ok) {
         const errorText = await response.text();
