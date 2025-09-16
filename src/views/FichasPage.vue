@@ -64,7 +64,6 @@ watch(selectedCategory, () => {
           >
             <ion-thumbnail slot="start" class="fish-thumbnail">
               <ion-img :src="getImagemFicha(ficha)" :alt="getNomeExibicao(ficha)" />
-              <pre>{{ getImagemFicha(ficha) }}</pre>
             </ion-thumbnail>
             <ion-label class="fish-name">{{ getNomeExibicao(ficha) }}</ion-label>
           </ion-item>
