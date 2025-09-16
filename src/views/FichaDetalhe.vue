@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { 
   IonPage, IonContent, IonButton, IonImg, IonIcon, IonSpinner, IonText
 } from '@ionic/vue';
@@ -10,6 +10,7 @@ import TitleDelta from '@/components/TitleDelta.vue'
 import { Ficha } from '@/types/ficha';
 
 const route = useRoute();
+const router = useRouter();
 const { buscarFichaNaLista, getImagemFicha, getNomeExibicao } = useFicha();
 
 const ficha = ref<Ficha | null>(null);
@@ -75,6 +76,11 @@ const formatGh = (ficha: Ficha) => {
   return '5 - 20';
 }
 
+const goBack = () => {
+  console.log('goBack');
+  router.push('/fichas');
+}
+
 onMounted(() => {
   nextTick(() => {
     carregarFicha();
@@ -96,10 +102,10 @@ onMounted(() => {
       </div>
 
       <div v-else-if="ficha" class="ficha-content">
-        <div class="custom-header flex items-center justify-between px-4 py-3 relative z-10">
-          <ion-button fill="clear" color="light" @click="$router.go(-1)" class="m-0">
-            <ion-icon :icon="arrowBack" />
-          </ion-button>
+          <div class="custom-header flex items-center justify-between px-4 py-3 relative z-10">
+            <ion-button fill="clear" color="light" @click="goBack" class="m-0 relative z-10">
+              <ion-icon :icon="arrowBack" />
+            </ion-button>
           <div class="flex items-center justify-center absolute left-0 right-0 top-0 bottom-0">
             <TitleDelta containerClass="!m-0 !p-0 !w-full" small />
           </div>
