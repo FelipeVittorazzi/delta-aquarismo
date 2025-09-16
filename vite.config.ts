@@ -29,6 +29,11 @@ export default defineConfig({
         changeOrigin: true,
         secure: true,
       },
+      '/api': {
+        target: 'https://deltaaquarismo.com.br',
+        changeOrigin: true,
+        secure: true,
+      },
     },
   },
   build: {

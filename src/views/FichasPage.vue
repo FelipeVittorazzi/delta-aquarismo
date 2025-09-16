@@ -1,91 +1,93 @@
 <script setup lang="ts">
-import { IonPage, IonContent,
-         IonSegment, IonSegmentButton, IonLabel, IonList, IonItem,
-         IonThumbnail, IonImg } from '@ionic/vue';
+import { IonPage, IonContent, IonSegment, IonSegmentButton, IonLabel, IonList, IonItem, IonThumbnail, IonImg, IonSpinner, IonText } from '@ionic/vue';
+import { useFicha } from '@/composables/useFicha';
 
-const selectedCategory = ref('peixes');
+const {
+  fichas,
+  loading,
+  error,
+  selectedCategory,
+  carregarFichas,
+  getImagemFicha,
+  getNomeExibicao,
+} = useFicha();
 
-const peixes = ref([
-  {
-    id: 'betta',
-    nome: 'Betta Splendens',
-    imagem: 'https://placehold.co/600x400'
-  },
-  {
-    id: 'neon',
-    nome: 'Neon Tetra',
-    imagem: 'https://placehold.co/600x400'
-  },
-  {
-    id: 'barb',
-    nome: 'Green Tiger Barb',
-    imagem: 'https://placehold.co/600x400'
-  },
-  {
-    id: 'shrimp',
-    nome: 'Red Cherry Shrimp',
-    imagem: 'https://placehold.co/600x400'
-  }
-]);
+onMounted(() => {
+  carregarFichas();
+});
+
+watch(selectedCategory, () => {
+  carregarFichas();
+});
 </script>
 
 <template>
   <ion-page>
     <ion-content :scroll-y="false">
-      <!-- Cabeçalho com gradiente -->
       <div class="header-section">
         <div class="flex flex-col gap-3 items-center justify-center text-white pt-20 pb-10">
         <h1 class="text-3xl font-bold">FICHAS</h1>
       </div>
         
-        <!-- Segment dentro do cabeçalho -->
         <div class="segment-container">
           <ion-segment v-model="selectedCategory">
-            <ion-segment-button value="peixes">
+            <ion-segment-button value="fauna">
               <ion-label class="text-sm font-semibold">Peixes</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="plantas">
+            <ion-segment-button value="flora">
               <ion-label class="text-sm font-semibold">Plantas</ion-label>
             </ion-segment-button>
-            <ion-segment-button value="invertebrados">
+            <ion-segment-button value="invertebrado">
               <ion-label class="text-sm font-semibold">Invertebrados</ion-label>
             </ion-segment-button>
           </ion-segment>
         </div>
       </div>
 
-      <!-- Área da lista com scroll -->
       <div class="list-section">
-        <ion-list v-if="selectedCategory === 'peixes'" class="fish-list">
-          <ion-item v-for="peixe in peixes" :key="peixe.id" :router-link="'/ficha/' + peixe.id" class="list-item">
+        <div v-if="loading" class="flex justify-center items-center py-8">
+          <ion-spinner name="crescent"></ion-spinner>
+        </div>
+
+        <div v-else-if="error" class="flex justify-center items-center py-8 px-4">
+          <ion-text color="danger">
+            <p class="text-center">{{ error }}</p>
+          </ion-text>
+        </div>
+
+        <ion-list v-else-if="fichas.length > 0" class="fish-list">
+          <ion-item 
+            v-for="ficha in fichas" 
+            :key="ficha.id" 
+            :router-link="'/ficha/' + ficha.id" 
+            class="list-item"
+          >
             <ion-thumbnail slot="start" class="fish-thumbnail">
-              <ion-img :src="peixe.imagem" :alt="peixe.nome" />
+              <ion-img :src="getImagemFicha(ficha)" :alt="getNomeExibicao(ficha)" />
+              <pre>{{ getImagemFicha(ficha) }}</pre>
             </ion-thumbnail>
-            <ion-label class="fish-name">{{ peixe.nome }}</ion-label>
+            <ion-label class="fish-name">{{ getNomeExibicao(ficha) }}</ion-label>
           </ion-item>
         </ion-list>
 
-        <ion-list v-else-if="selectedCategory === 'plantas'" class="fish-list">
-          <!-- Lista de plantas aqui -->
-        </ion-list>
-
-        <ion-list v-else class="fish-list">
-          <!-- Lista de invertebrados aqui -->
-        </ion-list>
+        <div v-else class="flex justify-center items-center py-8 px-4">
+          <ion-text color="medium">
+            <p class="text-center">Nenhuma ficha encontrada para esta categoria.</p>
+          </ion-text>
+        </div>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <style scoped>
-/* Layout principal */
 ion-content {
-  --background: #f8f9fa;
+  --background: linear-gradient(135deg, #ffffff 0%,  #b9cfda 100%);
 }
 
 .header-section {
-  background: linear-gradient(135deg, #4a90e2 0%, #357abd 50%, #2c5aa0 100%);
-  position: relative;
+  background: url('/background.png') no-repeat center center;
+  background-size: cover;
 }
 
 .segment-container {
@@ -93,7 +95,6 @@ ion-content {
 }
 
 .list-section {
-  background: #f8f9fa;
   flex: 1;
   overflow-y: auto;
   padding-top: 8px;
@@ -130,17 +131,14 @@ ion-segment-button.segment-button-checked {
 }
 
 .list-item {
-  --background: #ffffff;
-  --border-radius: 12px;
-  --padding-start: 16px;
-  --padding-end: 16px;
-  margin: 8px 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --background: transparent;
+  margin: 8px 0;
   border: none;
 }
 
 .fish-thumbnail {
-  --size: 64px;
+  --size: 104px;
+  width: 134px;
   --border-radius: 8px;
   margin-right: 16px;
 }
@@ -156,7 +154,6 @@ ion-segment-button.segment-button-checked {
   color: #2c3e50;
 }
 
-/* Remover estilos padrão do Ionic */
 ion-list {
   background: transparent;
   padding: 0;
