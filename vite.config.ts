@@ -34,6 +34,11 @@ export default defineConfig({
         changeOrigin: true,
         secure: true,
       },
+      '/storage': {
+        target: 'https://deltaaquarismo.com.br',
+        changeOrigin: true,
+        secure: true,
+      },
     },
   },
   build: {

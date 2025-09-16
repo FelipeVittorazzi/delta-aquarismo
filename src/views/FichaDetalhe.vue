@@ -2,11 +2,12 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
 import { 
-  IonPage, IonContent, IonButton, IonImg, IonIcon, IonSpinner, IonText
+  IonPage, IonContent, IonButton, IonIcon, IonSpinner, IonText
 } from '@ionic/vue';
 import { fish, arrowBack } from 'ionicons/icons';
 import { useFicha } from '@/composables/useFicha';
-import TitleDelta from '@/components/TitleDelta.vue'
+import TitleDelta from '@/components/TitleDelta.vue';
+import OptimizedImage from '@/components/OptimizedImage.vue';
 import { Ficha } from '@/types/ficha';
 
 const route = useRoute();
@@ -112,10 +113,12 @@ onMounted(() => {
         </div>
 
         <div class="hero-container relative h-[244px] mx-5 rounded-3xl overflow-hidden shadow-2xl rounded-b-none">
-          <ion-img 
+          <OptimizedImage 
             :src="getImagemFicha(ficha)" 
             :alt="getNomeExibicao(ficha)"
-            class="w-full h-full object-cover"
+            container-class="relative overflow-hidden h-full"
+            image-class="w-full h-full object-cover"
+            skeleton-class="rounded-3xl"
           />
         </div>
 
