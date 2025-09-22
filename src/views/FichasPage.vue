@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { IonPage, IonContent, IonSegment, IonSegmentButton, IonLabel, IonList, IonItem, IonThumbnail, IonSpinner, IonText } from '@ionic/vue';
+import { IonPage, IonContent, IonSegment, IonSegmentButton, IonLabel, IonList, IonItem, IonThumbnail, IonImg, IonSpinner, IonText } from '@ionic/vue';
 import { useFicha } from '@/composables/useFicha';
-import OptimizedImage from '@/components/OptimizedImage.vue';
 
 const {
   fichas,
@@ -64,12 +63,7 @@ watch(selectedCategory, () => {
             class="list-item"
           >
             <ion-thumbnail slot="start" class="fish-thumbnail">
-              <OptimizedImage 
-                :src="getImagemFicha(ficha)" 
-                :alt="getNomeExibicao(ficha)"
-                container-class="relative overflow-hidden rounded-lg"
-                skeleton-class="rounded-lg"
-              />
+              <ion-img :src="getImagemFicha(ficha)" :alt="getNomeExibicao(ficha)" />
             </ion-thumbnail>
             <ion-label class="fish-name">{{ getNomeExibicao(ficha) }}</ion-label>
           </ion-item>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { heart, chatbubble } from 'ionicons/icons';
-import OptimizedImage from './OptimizedImage.vue';
+import { heart, chatbubble } from 'ionicons/icons'
 
 interface Post {
   id: number
@@ -33,16 +32,12 @@ defineProps<{
     <ion-card-content class="px-4 py-2">
       <h3 class="!text-lg text-primary !mb-0">{{ post.titulo }}</h3>
       <p class="!text-lg text-primary">{{ post.descricao }}</p>
-      <div class="h-[13rem] rounded-xl overflow-hidden">
-        <OptimizedImage
-          :src="post.imagem"
-          :alt="post.titulo"
-          container-class="relative overflow-hidden h-full"
-          image-class="w-full h-full object-cover"
-          skeleton-class="rounded-xl"
-        />
-      </div>
-    </ion-card-content>
+    <img
+      :src="post.imagem"
+      :alt="post.titulo"
+      class="w-full h-[13rem] object-cover rounded-xl"
+    />
+  </ion-card-content>
 
     <ion-card-footer class="flex gap-4 px-4 pb-4">
         <ion-icon :icon="heart" slot="start" class="text-primary"/>
