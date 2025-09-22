@@ -28,9 +28,12 @@ class HttpClient {
     const { getAuthHeader } = useAuth();
     const url = `${this.baseURL}${endpoint}`;
     
+    // Se o body é FormData, não definir Content-Type (deixar o browser definir)
+    const isFormData = options.body instanceof FormData;
+    
     const config: RequestInit = {
       headers: {
-        'Content-Type': 'application/json',
+        ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
         ...getAuthHeader(),
         ...options.headers,
       },
@@ -89,16 +92,20 @@ class HttpClient {
   }
 
   async post<T>(endpoint: string, data?: any): Promise<T> {
+    const body = data instanceof FormData ? data : (data ? JSON.stringify(data) : undefined);
+    
     return this.request<T>(endpoint, {
       method: 'POST',
-      body: data ? JSON.stringify(data) : undefined,
+      body,
     });
   }
 
   async put<T>(endpoint: string, data?: any): Promise<T> {
+    const body = data instanceof FormData ? data : (data ? JSON.stringify(data) : undefined);
+    
     return this.request<T>(endpoint, {
       method: 'PUT',
-      body: data ? JSON.stringify(data) : undefined,
+      body,
     });
   }
 
