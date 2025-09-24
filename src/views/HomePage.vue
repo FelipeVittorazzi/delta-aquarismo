@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onMounted, computed } from 'vue';
 import { IonPage, IonContent, IonCard, IonCardContent, IonSpinner, IonText } from '@ionic/vue';
 import TitleDelta from '@/components/TitleDelta.vue'
 import PostCard from '@/components/PostCard.vue'
@@ -38,7 +37,7 @@ const postsFormatted = computed(() => {
     <ion-content class="ion-padding">
       <TitleDelta />
 
-      <ion-card class="mb-6">
+      <ion-card class="mb-6 rounded-3xl">
         <ion-card-content class="text-start p-7">
           <h2 class="!font-semibold text-primary !text-2xl">Seu Cashback atual:</h2>
           <div class="text-5xl font-bold text-primary mt-2">{{ formatarMoeda(currentUserCashback) }}</div>

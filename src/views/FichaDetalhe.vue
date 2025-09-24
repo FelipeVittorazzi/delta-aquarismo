@@ -102,7 +102,7 @@ onMounted(() => {
       </div>
 
       <div v-else-if="ficha" class="ficha-content">
-          <div class="custom-header flex items-center justify-between px-4 py-3 relative z-10">
+          <div class="custom-header flex items-center justify-between px-4 py-3 relative z-10 my-5">
             <ion-button fill="clear" color="light" @click="goBack" class="m-0 relative z-10">
               <ion-icon :icon="arrowBack" />
             </ion-button>

@@ -16,7 +16,7 @@ defineProps<{
 </script>
 
 <template>
-  <ion-card class="rounded-xl overflow-hidden px-2">
+  <ion-card class="rounded-3xl overflow-hidden px-2">
     <ion-card-header class="px-4 pt-4">
      <div class="flex items-center justify-between">
       <div class="flex items-center gap-3">
