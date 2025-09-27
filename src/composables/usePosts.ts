@@ -1,3 +1,4 @@
+import { ref, computed } from 'vue';
 import { postService } from '@/services';
 import type { Post, PostComment, FeedFilters } from '@/types/api';
 
@@ -52,7 +53,7 @@ export function usePosts() {
     try {
       await postService.likePost(postId);
       // Atualiza o estado local
-      const post = posts.value.find(p => p.id === postId);
+      const post = posts.value.find((p: Post) => p.id === postId);
       if (post) {
         post.is_liked = true;
         post.likes_count++;
@@ -69,7 +70,7 @@ export function usePosts() {
     try {
       await postService.unlikePost(postId);
       // Atualiza o estado local
-      const post = posts.value.find(p => p.id === postId);
+      const post = posts.value.find((p: Post) => p.id === postId);
       if (post) {
         post.is_liked = false;
         post.likes_count--;
@@ -108,7 +109,7 @@ export function usePosts() {
       postComments.value.unshift(novoComentario);
       
       // Atualiza contador de comentários no post
-      const post = posts.value.find(p => p.id === postId);
+      const post = posts.value.find((p: Post) => p.id === postId);
       if (post) {
         post.comments_count++;
       }
@@ -144,7 +145,7 @@ export function usePosts() {
   }
 
   function buscarPostNaLista(id: number): Post | null {
-    return posts.value.find(p => p.id === id) || null;
+    return posts.value.find((p: Post) => p.id === id) || null;
   }
 
   return {

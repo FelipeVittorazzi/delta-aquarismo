@@ -165,7 +165,7 @@ function handleFileSelect(event: Event) {
             <ion-textarea
               v-model="novoComentario"
               placeholder="Escreva um comentário..."
-              rows="3"
+              :rows="3"
               class="mb-2"
             ></ion-textarea>
             

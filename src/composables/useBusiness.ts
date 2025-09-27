@@ -23,7 +23,7 @@ const error = ref<string | null>(null);
 export function useBusiness() {
   
   const totalExpenses = computed(() => {
-    return expenses.value.reduce((total, expense) => total + expense.amount, 0);
+    return expenses.value.reduce((total, expense) => total + expense.amount_cents, 0);
   });
 
   const totalSales = computed(() => {

@@ -1,6 +1,7 @@
 import { ref } from 'vue';
 import { meService } from '@/services';
-import type { ApiError, Cashback, PaginatedResponse, PurchaseOrder } from '@/types/api';
+import type { Cashback, PaginatedResponse, PurchaseOrder } from '@/types/api';
+import type { ApiError } from '@/services/httpClient';
 
 export function useMe() {
   const loading = ref(false);

@@ -8,9 +8,10 @@ import {
   customerService,
   saleService,
   purchaseService,
-  expenseService,
-  type ApiError
+  expenseService
 } from '@/services';
+import type { ApiError } from '@/services/httpClient';
+import type { Ficha, Product, Post, Customer, Sale, Expense } from '@/types/api';
 
 /**
  * Composable que fornece acesso a todos os serviços da API
@@ -21,12 +22,12 @@ export function useApiServices() {
   const error = ref<ApiError | null>(null);
 
   const state = reactive({
-    fichas: [],
-    products: [],
-    posts: [],
-    customers: [],
-    sales: [],
-    expenses: []
+    fichas: [] as Ficha[],
+    products: [] as Product[],
+    posts: [] as Post[],
+    customers: [] as Customer[],
+    sales: [] as Sale[],
+    expenses: [] as Expense[]
   });
 
   /**
@@ -49,7 +50,7 @@ export function useApiServices() {
 
   // Métodos para Fichas
   const fichas = {
-    async list(params?: { page?: number; per_page?: number }) {
+    async list(params?: { buscar?: string; ph_min?: string; ph_max?: string; categoria?: string; familia?: string; litragem_min?: string; litragem_max?: string }) {
       const result = await execute(() => fichaService.listFichas(params));
       if (result) {
         state.fichas = result.data;
@@ -169,7 +170,7 @@ export function useApiServices() {
   // Métodos para Cashback
   const cashback = {
     async createForSale(saleId: number, recalculate?: boolean) {
-      return execute(() => cashbackService.createOrRecalcCashback({ sale_id: saleId, recalculate }));
+      return execute(() => cashbackService.createOrRecalcCashback(saleId));
     },
 
     async approve(cashbackId: number) {
