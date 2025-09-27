@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { heart, chatbubble } from 'ionicons/icons'
+import { ref } from 'vue'
+import CommentsModal from './CommentsModal.vue'
 
 interface Post {
   id: number
@@ -10,9 +12,16 @@ interface Post {
   data: string
 }
 
-defineProps<{
+const props = defineProps<{
   post: Post
 }>()
+
+const isCommentsModalOpen = ref(false)
+
+const abrirModalComentarios = () => {
+  console.log('Abrindo modal de comentários para post:', props.post);
+  isCommentsModalOpen.value = true
+}
 </script>
 
 <template>
@@ -41,13 +50,28 @@ defineProps<{
 
     <ion-card-footer class="flex gap-4 px-4 pb-4">
         <ion-icon :icon="heart" slot="start" class="text-primary"/>
-        <ion-icon :icon="chatbubble" slot="start" class="text-primary"/>
+        <ion-icon 
+          :icon="chatbubble" 
+          slot="start" 
+          class="text-primary cursor-pointer"
+          @click="abrirModalComentarios"
+        />
     </ion-card-footer>
   </ion-card>
+
+  <!-- Modal de comentários -->
+  <CommentsModal 
+    v-model:is-open="isCommentsModalOpen"
+    :post="post"
+  />
 </template>
 
 <style scoped>
 ion-icon {
   font-size: 1.5rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>
