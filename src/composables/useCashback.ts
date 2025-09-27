@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue';
-import { cashbackService, promotionService } from '@/services';
+import { cashbackService, promotionService, meService } from '@/services';
 import type { Cashback, Promotion, CreatePromotionRequest } from '@/types/api';
 
 const cashbacks = ref<Cashback[]>([]);
@@ -148,6 +148,21 @@ export function useCashback() {
     currentUserCashback.value = valor;
   }
 
+  async function carregarSaldoCashbackUsuario() {
+    loading.value = true;
+    error.value = null;
+    try {
+      const res = await meService.getCashbackBalance();
+      currentUserCashback.value = res.balance_cents / 100;
+      return res.balance_cents / 100;
+    } catch (err: any) {
+      error.value = err.message || 'Erro ao carregar saldo de cashback';
+      return null;
+    } finally {
+      loading.value = false;
+    }
+  }
+
   function formatarMoeda(valor: number): string {
     return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
@@ -178,6 +193,7 @@ export function useCashback() {
     criarPromocao,
     anexarProdutosPromocao,
     atualizarCashbackUsuario,
+    carregarSaldoCashbackUsuario,
     formatarMoeda,
     limparErro,
   };

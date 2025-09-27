@@ -4,12 +4,13 @@ import { IonPage, IonContent,
          IonLabel, IonText, IonImg } from '@ionic/vue';
 import { wallet, cart, star, chatbubble, person, logOut } from 'ionicons/icons';
 import { useRouter } from 'vue-router';
+import { useCashback } from '@/composables';
 import HeaderPadrao from '@/components/HeaderPadrao.vue';
 
 const router = useRouter();
 
 const userName = ref('João da Silva');
-const cashbackValue = ref('52,00');
+const { currentUserCashback } = useCashback();
 
 const userInitials = computed(() => {
   return userName.value
@@ -57,7 +58,7 @@ const logout = () => {
       <ion-card class="cashback-card">
         <ion-card-content>
           <h3>Seu cashback atual</h3>
-          <div class="cashback-value">R$ {{ cashbackValue }}</div>
+          <div class="cashback-value">R$ {{ Number(currentUserCashback).toFixed(2) }}</div>
         </ion-card-content>
       </ion-card>
 

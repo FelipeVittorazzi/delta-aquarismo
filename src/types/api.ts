@@ -86,7 +86,7 @@ export interface UpdateProductRequest extends Partial<CreateProductRequest> {}
 export interface Post {
   id: number;
   user_id: number;
-  content: string;
+  body: string;
   created_at: string;
   updated_at: string;
   likes_count: number;

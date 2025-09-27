@@ -4,6 +4,7 @@ export { fichaApiService } from './fichaApiService';
 export { productService } from './productService';
 export { postService } from './postService';
 export { cashbackService, promotionService } from './cashbackService';
+export { meService, type CashbackBalanceResponse } from './meService';
 export { customerService } from './customerService';
 export { saleService } from './saleService';
 export { purchaseService } from './purchaseService';

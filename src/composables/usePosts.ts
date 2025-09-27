@@ -1,6 +1,5 @@
-import { ref, computed } from 'vue';
 import { postService } from '@/services';
-import type { Post, PostComment, CreatePostRequest, CreatePostCommentRequest, FeedFilters } from '@/types/api';
+import type { Post, PostComment, FeedFilters } from '@/types/api';
 
 const posts = ref<Post[]>([]);
 const postComments = ref<PostComment[]>([]);

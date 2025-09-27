@@ -6,22 +6,20 @@ import { usePosts, useCashback } from '@/composables';
 
 // Composables
 const { posts, loading: postsLoading, carregarFeed } = usePosts();
-const { currentUserCashback, formatarMoeda, atualizarCashbackUsuario } = useCashback();
-
-// Simula carregamento do cashback do usuário (substituir pela lógica real)
-atualizarCashbackUsuario(25.60);
+const { currentUserCashback, formatarMoeda, carregarSaldoCashbackUsuario } = useCashback();
 
 onMounted(async () => {
   // Carrega o feed de posts
   await carregarFeed();
+  // Carrega saldo real de cashback do usuário
+  await carregarSaldoCashbackUsuario();
 });
 
 // Dados mock para compatibilidade com PostCard existente
 const postsFormatted = computed(() => {
-  return posts.value.map(post => ({
+  return posts.value.map((post: any) => ({
     id: post.id,
-    titulo: (post.content || '').substring(0, 50) + '...', // Primeira linha como título
-    descricao: post.content || '',
+    titulo: post.body || '',
     imagem: post.media?.[0]?.url || 'https://placehold.co/600x400',
     autor: post.user?.name || 'Usuário',
     data: new Intl.DateTimeFormat('pt-BR', { 
